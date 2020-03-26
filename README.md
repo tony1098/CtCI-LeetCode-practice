@@ -1,2 +1,2 @@
-# CtCI-practice
-CtCI coding questions in C++
+# CtCI-LeetCode practice
+CtCI Leetcode coding questions in C++
