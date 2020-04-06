@@ -1,6 +1,6 @@
 #include <vector>
 #include <iostream>
-
+/*
 void recursive_permute(std::vector<int>& nums, std::vector<int> cur_permutation, 
             std::vector< std::vector<int> > &permutations)
 {
@@ -23,6 +23,33 @@ void recursive_permute(std::vector<int>& nums, std::vector<int> cur_permutation,
 std::vector<std::vector<int>> permute(std::vector<int>& nums) {
     std::vector< std::vector<int> > permutations;
     recursive_permute(nums, std::vector<int>(), permutations);
+    return permutations;
+}
+*/
+
+void recursive_permute(std::vector<int>& nums, std::vector<int> cur_permutation, std::vector<int> visited,
+            std::vector< std::vector<int> > &permutations)
+{
+    if(cur_permutation.size() == nums.size())
+        permutations.push_back(cur_permutation);
+    else
+    {
+        for(int i = 0; i < nums.size(); i++)
+        {
+            if(visited[i])
+                continue;
+            visited[i] = 1;
+            cur_permutation.push_back(nums[i]);
+            recursive_permute(nums, cur_permutation, visited, permutations);
+            cur_permutation.pop_back();
+            visited[i] = 0;
+        }
+    }
+}
+
+std::vector<std::vector<int>> permute(std::vector<int>& nums) {
+    std::vector< std::vector<int> > permutations;
+    recursive_permute(nums, std::vector<int>(), std::vector<int>(nums.size(), 0), permutations);
     return permutations;
 }
 
